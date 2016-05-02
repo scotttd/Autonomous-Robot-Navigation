@@ -15,6 +15,7 @@ Using the gyro, Mag and Accel to help with weaknesses can be found here: [A prac
 
 ##Motion Control Profiles - Smooth Movement
 
+[2015 FIRST World Championships Conference - Motion Planning & Control in FRC](https://www.youtube.com/watch?v=8319J1BEHwM) - CheesyPoofs FRC 254 Presentation
 Good overview behind [The Mathematics behind Motion control profiles](http://www.pmdcorp.com/downloads/Mathematics_of_Motion_Control_Profiles.pdf)
 
 [Simple motion control profile discussion]http://electronics.stackexchange.com/questions/38573/smooth-a-motor-movement
