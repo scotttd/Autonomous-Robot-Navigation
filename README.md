@@ -3,7 +3,7 @@ This is an experiment in autonomous robot navigation codes.
 
 It is built on a lot a work from others.  I hope to document all the sources as this moves along.
 
-##IMU - THe art of Gyro, Accel and Mag sensors
+##IMU - The art of Gyro, Accel and Mag sensors
 
 [FreeIMU website](http://www.varesano.net/projects/hardware/FreeIMU)
 
