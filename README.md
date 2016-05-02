@@ -18,3 +18,5 @@ Using the gyro, Mag and Accel to help with weaknesses can be found here: [A prac
 Good overview behind [The Mathematics behind Motion control profiles](http://www.pmdcorp.com/downloads/Mathematics_of_Motion_Control_Profiles.pdf)
 
 [Simple motion control profile discussion]http://electronics.stackexchange.com/questions/38573/smooth-a-motor-movement
+[Sinisodal Acceleration FRC - Chief Delphi code](http://www.chiefdelphi.com/media/papers/3107) - Very Good!
+
