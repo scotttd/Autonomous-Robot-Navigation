@@ -23,9 +23,9 @@ void loop() {
   sixDOF.getEuler(angles);
   
   Serial.print(angles[0]);
-  Serial.print(" | ");  
+  Serial.print(",");  
   Serial.print(angles[1]);
-  Serial.print(" | ");
+  Serial.print(",");
   Serial.println(angles[2]);
   
   delay(100); 
