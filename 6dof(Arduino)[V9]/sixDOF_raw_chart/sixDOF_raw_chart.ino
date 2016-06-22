@@ -25,8 +25,8 @@ void loop() {
    sixDOF.getRawValues(rawSixDof);
   // RX8 [h=43] @1Key1 @0Key1     
   Serial.print("C");     
-  Serial.write(rawSixDof[0]>>8);     
-  Serial.write(rawSixDof[0]&0xff);
+  Serial.write(rawSixDof[5]>>8);     
+  Serial.write(rawSixDof[5]&0xff);
   //Serial.print(rawSixDof[0]);
   //Serial.print(",");  
   //Serial.print(rawSixDof[1]);
