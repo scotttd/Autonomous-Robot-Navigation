@@ -1,0 +1,66 @@
+/*
+	 Trapezoid.cpp - Library to  find trapzoid profile position
+	 Created by Scott Davidson, June 28 2016.
+	 Released into the public domain
+*/
+
+#include <Arduino.h>
+#include "Trapezoid.h"
+
+Trapezoid::Trapezoid(int timeAccel,int minSpeed,int maxSpeed,long startTime,long runTime)
+{
+	_timeAccel = timeAccel;
+	_minSpeed = minSpeed;
+	_maxSpeed = maxSpeed;
+	_startTime = startTime;
+	_runTime = runTime;
+	
+	//Update the calculated values in the class
+	_updateTrapezoidValues();
+}
+
+void Trapezoid::_updateTrapezoidValues();
+{
+	_timeMaxSpeed = _runTime - _timeAccel;
+	_addSpeed = ((double) _maxSpeed - (double) _minSpeed)/(double) _timeAccel; 
+}
+
+int Trapezoid::setPoint(long cTime)
+{
+    int cSpeed = 0;
+	if (cTime < _timeAccel) {
+        cSpeed = _minSpeed + (cTime * _addSpeed);
+    }
+    else if (cTime < _timeMaxSpeed) {
+        cSpeed = _maxSpeed;
+    }
+    else {
+        cSpeed = _maxSpeed - ((cTime - _timeMaxSpeed) * _addSpeed);
+    }
+	//Make sure the value is within the Min and Max speed
+	cSpeed = constrain(cSpeed, _minSpeed, _maxSpeed);
+	return cSpeed;
+}
+
+void Trapezoid::setRunTime(long runTime)
+{
+	_runTime = runTime;
+	//Update the calculated values in the class
+	_updateTrapezoidValues();
+}
+
+void Trapezoid::setAcceleration(int timeAccel)
+{
+	_timeAccel = timeAccel;
+	//Update the calculated values in the class
+	_updateTrapezoidValues();
+}
+
+void Trapezoid::setStartTime(long startTime)
+{
+	_startTime = startTime;
+	//Update the calculated values in the class
+	_updateTrapezoidValues();
+}
+
+

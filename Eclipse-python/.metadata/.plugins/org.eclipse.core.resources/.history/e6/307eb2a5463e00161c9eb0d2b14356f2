@@ -1,0 +1,125 @@
+/*
+	 TankDrive.cpp - Library to create TankDrive
+	 Created by Scott Davidson, June 28 2016.
+	 Released into the public domain
+*/
+
+#include <Arduino.h>
+#include "TankDrive.h"
+
+TankDrive::TankDrive(int speedPinLeft, int speedPinRight, int forwardPinRight, int reversePinRight, int forwardPinLeft, int reversePinLeft)
+{
+	// connect motor controller pins to Arduino digital pins
+	// motor Left
+	_speedPinLeft = speedPinLeft;
+	_forwardPinLeft = forwardPinLeft;
+	_reversePinLeft = reversePinLeft;
+	// motor two
+	_speedPinRight = speedPinRight;
+	_forwardPinRight = forwardPinRight;
+	_reversePinRight = reversePinRight;
+
+	// set all the motor control pins to outputs
+	pinMode(speedPinLeft, OUTPUT);
+    pinMode(speedPinRight, OUTPUT);
+    pinMode(forwardPinLeft, OUTPUT);
+    pinMode(reversePinLeft, OUTPUT);
+    pinMode(forwardPinRight, OUTPUT);
+    pinMode(reversePinRight, OUTPUT);
+
+    //m_trapezoid = new Trapezoid();
+}
+
+void TankDrive::fullStop ()
+{
+  // now turn off motors
+  digitalWrite(_forwardPinLeft, LOW);
+  digitalWrite(_reversePinLeft, LOW);
+  digitalWrite(_forwardPinRight, LOW);
+  digitalWrite(_reversePinRight, LOW);
+}
+
+void TankDrive::doDrive(int driveTime)
+{
+	  long startTime = millis();
+	  long cTime = 0;
+	  int cSpeed = 150;
+
+
+	 while (millis() - startTime < driveTime) {
+		digitalWrite(_speedPinLeft, cSpeed);
+		digitalWrite(_speedPinRight, cSpeed);
+	 }
+	 fullStop();
+ }
+
+void TankDrive::driveForward(int driveTime)
+{
+  // Set motor directions to move forward
+  digitalWrite(_forwardPinLeft, HIGH);
+  digitalWrite(_reversePinLeft, LOW);
+  digitalWrite(_forwardPinRight, HIGH);
+  digitalWrite(_reversePinRight, LOW);
+
+  char b;
+  Serial.println(String(_speedPinLeft));
+
+  doDrive (driveTime);
+}
+
+void TankDrive::driveReverse(int driveTime)
+{
+  // Set motor directions to move in reverse
+  digitalWrite(_forwardPinLeft, LOW);
+  digitalWrite(_reversePinLeft, HIGH);
+  digitalWrite(_forwardPinRight, LOW);
+  digitalWrite(_reversePinRight, HIGH);
+  
+  doDrive (driveTime);
+}
+
+
+void TankDrive::turnLeft(int turnAngle)
+{
+	 // Set motor directions to Turn Left
+	  digitalWrite(_forwardPinLeft, LOW);
+	  digitalWrite(_reversePinLeft, LOW);
+	  digitalWrite(_forwardPinRight, HIGH);
+	  digitalWrite(_reversePinRight, LOW);
+}
+
+void TankDrive::turnRight(int turnAngle)
+{
+	// Set motor directions to turn Right
+	  digitalWrite(_forwardPinLeft, HIGH);
+	  digitalWrite(_reversePinLeft, LOW);
+	  digitalWrite(_forwardPinRight, LOW);
+	  digitalWrite(_reversePinRight, LOW);
+}
+
+/*int TankDrive::TimeAccel() const
+{
+	return m_trapezoid._timeAccel;
+}
+
+void TankDrive::SetTimeAccel(int timeAccel)
+{
+	m_trapezoid.setAcceleration(timeAccel);
+}
+
+Trapazoid& TankDrive::Trapezoid()
+{
+	return m_trapezoid;
+}
+
+const Trapazoid& TankDrive::GetTrapazoid()
+{
+	return m_trapazoid;
+}
+
+void Trapezoid::SetTrapezoid(const Trapezoid& trapezoid)
+{
+	if (trapezoid.IsValid())
+		m_trapezoid = trapezoid;
+}
+
